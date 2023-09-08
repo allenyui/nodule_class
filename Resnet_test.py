@@ -186,31 +186,7 @@ print('loading pretrained weight {}'.format(weights))
 model.load_state_dict(torch.load(weights))
 print("-------- pre-train weights load successfully --------")
 
-# def test (model, test_loader, device):
-#     model.eval()  # 设置模型为评估模式
-#
-#     all_preds = []
-#     all_labels = []
-#
-#     with torch.no_grad():
-#         for x, label in test_loader:
-#             x = x.float().to(device)
-#             label = label.to(device)
-#
-#             logits = model(x)
-#             logits = logits.reshape([label.cpu().numpy().shape[0]])
-#             prob_out = nn.Sigmoid()(logits)
-#
-#             preds = (prob_out > 0.5).float().cpu().numpy()
-#             all_preds.extend(preds)
-#             all_labels.extend(label.cpu().numpy())
-#
-#     accuracy = accuracy_score(all_labels, all_preds)
-#     precision = precision_score(all_labels, all_preds)
-#     recall = recall_score(all_labels, all_preds)
-#     f1 = f1_score(all_labels, all_preds)
-#
-#     return accuracy, precision, recall, f1
+
 def test_save(model, test_loader, device):
     model.eval()  # Set model to evaluation mode
 
@@ -274,7 +250,7 @@ def test_save(model, test_loader, device):
     confusion = [[total_TN, total_FP], [total_FN, total_TP]]
     plt.figure(figsize=(12, 10))
     plt.imshow(confusion, cmap=plt.cm.Blues)
-    plt.xticks(range(len(classes)), classes, rotation=40, fontsize=18)
+    plt.xticks(range(len(classes)), classes, fontsize=18)
     plt.yticks(range(len(classes)), classes, fontsize=18)
     plt.ylim(1.5, -0.5)
     plt.title("Confusion matrix for ResNet50", fontdict={'weight': 'normal', 'size': 18})
@@ -284,7 +260,7 @@ def test_save(model, test_loader, device):
     # plt.ylabel('True label', fontsize=18)
     for i in range(len(confusion)):
         for j in range(len(confusion[i])):
-            color = "w" if confusion[i][j] > 400 else "black"
+            color = "w" if confusion[i][j] > 10 else "black"
             plt.text(j, i, confusion[i][j], fontsize=18, color=color, verticalalignment='center', horizontalalignment='center')
     plt.show()
 
