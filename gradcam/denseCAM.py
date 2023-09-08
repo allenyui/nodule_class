@@ -134,6 +134,7 @@ def extract_conv_layers_and_features(model, image):
         hooks.append(layer.register_forward_hook(hook_fn))
 
     # 前向传递图像通过模型
+    model.eval()
     _ = model(image)
 
     # 删除hooks
