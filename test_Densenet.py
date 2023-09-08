@@ -178,7 +178,7 @@ def test_save(model, test_loader, device):
     confusion = [[total_TN, total_FP], [total_FN, total_TP]]
     plt.figure(figsize=(12, 10))
     plt.imshow(confusion, cmap=plt.cm.Blues)
-    plt.xticks(range(len(classes)), classes, rotation=40, fontsize=18)
+    plt.xticks(range(len(classes)), classes, fontsize=18)
     plt.yticks(range(len(classes)), classes, fontsize=18)
     plt.ylim(1.5, -0.5)
     plt.title("Confusion matrix for DenseNet121", fontdict={'weight': 'normal', 'size': 18})
@@ -188,7 +188,7 @@ def test_save(model, test_loader, device):
     # plt.ylabel('True label', fontsize=18)
     for i in range(len(confusion)):
         for j in range(len(confusion[i])):
-            color = "w" if confusion[i][j] > 400 else "black"
+            color = "w" if confusion[i][j] > 10 else "black"
             plt.text(j, i, confusion[i][j], fontsize=18, color=color, verticalalignment='center', horizontalalignment='center')
     plt.show()
 
