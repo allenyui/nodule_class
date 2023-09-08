@@ -140,10 +140,10 @@ class ImageDataGenerator3D(object):
         self.std = None
         self.principal_components = None
         if dim_ordering == 'tf':
-            self.channel_axis = 4
-            self.row_axis = 1
-            self.col_axis = 2
-            self.depth_axis = 3
+            self.channel_axis = 1
+            self.row_axis = 2
+            self.col_axis = 3
+            self.depth_axis = 4
 
         if np.isscalar(zoom_range):
             self.zoom_range = [1 - zoom_range, 1 + zoom_range]
